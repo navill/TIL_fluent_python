@@ -190,6 +190,7 @@
 #
 import itertools
 import operator
+from random import randint
 
 ct = itertools.count()
 next(ct)  #
@@ -238,3 +239,18 @@ for length, group in itertools.groupby(animals, len):
     print(length, '->', list(group))
 for length, group in itertools.groupby(reversed(animals), len):
     print(length, '->', list(group))
+
+
+def iter_A():
+    return randint(1, 6)
+
+
+a = iter(iter_A, 1)
+print(type(a))  # <class 'callable_iterator'>
+# for 문은 숫자 1이 반환될 때 중단된다.
+for i in a:
+    print(i)
+
+lit = [1, 2, 3, 4, 5]
+print(dir(lit))  # iterable
+print(dir(iter(lit)))  # iterator
